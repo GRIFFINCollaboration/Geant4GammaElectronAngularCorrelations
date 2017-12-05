@@ -295,6 +295,15 @@ private:
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   // Rishita Gudapati- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::vector<G4double> _b1;
+  std::vector<G4double> _b2;
+  std::vector<G4double> _b3;
+  std::vector<G4double> _b4;
+  std::vector<G4double> _b5;
+  std::vector<G4double> _b6;
+  std::vector<G4double> _alphL1;
+  std::vector<G4double> _alphL2;
+
   std::vector< std::vector< G4double > > _a2_gg;
   std::vector< std::vector< G4double > > _a4_gg;
   std::vector< std::vector< G4double > > _a6_gg;
