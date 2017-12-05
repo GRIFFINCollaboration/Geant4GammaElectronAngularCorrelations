@@ -529,7 +529,12 @@ void G4NuclearLevelManager::AddMulipole(G4int Z, G4int A, G4String myfilename)
     nGammas     = thisLevel->NumberOfGammas();
 
     for (G4int i=0; i<nGammas; i++) {
-      if((_levelEnergyMultipole == thisLevel->Energy()) && (_gammaEnergyMultipole == thisLevel->GammaEnergies()[i]) ) {
+
+    // floating point precision! -- may also be an issue elsewhere
+    G4bool firstcheck = (std::abs(_levelEnergyMultipole - thisLevel->Energy()) < 0.000001);
+    G4bool secondcheck = (std::abs(_gammaEnergyMultipole - thisLevel->GammaEnergies()[i]) < 0.000001);
+
+      if(firstcheck && secondcheck) {
         thisLevel->FillL1(i, _L1);
         thisLevel->FillL2(i, _L2);
         thisLevel->FillMixingRatio(i, _mixingRatio);

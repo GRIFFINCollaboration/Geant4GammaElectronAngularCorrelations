@@ -334,6 +334,9 @@ G4double G4DiscreteGammaTransition::GetThetaFromWTheta(G4double higherLevelEnerg
 		       + _a8_gg[hlevelindex] * LegendreP(8,std::cos(theta))
 		       + _a10_gg[hlevelindex] * LegendreP(10,std::cos(theta))) * std::sin(theta);
 
+	// will result in errors if a2 is zero but higher orders are non-zero
+	if(_a2_gg[hlevelindex] == 0 || isnan(_a2_gg[hlevelindex])) { break; }
+
       	if(normy_gg <= WTheta_gg) {
         	value = theta;
         	foundTheta = true;
@@ -346,7 +349,9 @@ G4double G4DiscreteGammaTransition::GetThetaFromWTheta(G4double higherLevelEnerg
 		       + _a8_ge[hlevelindex] * LegendreP(8,std::cos(theta))
 		       + _a10_ge[hlevelindex] * LegendreP(10,std::cos(theta))) * std::sin(theta);
 
-      	if(normy_ge <= WTheta_ge) {
+	if(_a2_ge[hlevelindex] == 0 || isnan(_a2_ge[hlevelindex])) { break; }
+      	
+	if(normy_ge <= WTheta_ge) {
         	value = theta;
         	foundTheta = true;
         	break;
@@ -358,7 +363,9 @@ G4double G4DiscreteGammaTransition::GetThetaFromWTheta(G4double higherLevelEnerg
 		       + _a8_eg[hlevelindex] * LegendreP(8,std::cos(theta))
 		       + _a10_eg[hlevelindex] * LegendreP(10,std::cos(theta))) * std::sin(theta);
 
-      	if(normy_eg <= WTheta_eg) {
+	if(_a2_eg[hlevelindex] == 0 || isnan(_a2_eg[hlevelindex])) { break; }
+      	
+	if(normy_eg <= WTheta_eg) {
         	value = theta;
         	foundTheta = true;
         	break;
@@ -370,7 +377,9 @@ G4double G4DiscreteGammaTransition::GetThetaFromWTheta(G4double higherLevelEnerg
 		       + _a8_ee[hlevelindex] * LegendreP(8,std::cos(theta))
 		       + _a10_ee[hlevelindex] * LegendreP(10,std::cos(theta))) * std::sin(theta);
 
-      	if(normy_ee <= WTheta_ee) {
+	if(_a2_ee[hlevelindex] == 0 || isnan(_a2_ee[hlevelindex])) { break; }
+      	
+	if(normy_ee <= WTheta_ee) {
         	value = theta;
         	foundTheta = true;
         	break;
