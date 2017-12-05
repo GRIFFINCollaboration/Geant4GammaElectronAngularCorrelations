@@ -619,14 +619,14 @@ void G4NuclearLevelManager::AddMulipole(G4int Z, G4int A, G4String myfilename)
               L1p   = higherLevel->L2()[j];
               delta1= higherLevel->MixingRatio()[j];
 	    // Rishita Gudapati ----------------------------------------------------
-     	      bf1 = higherLevel->B1()[i];
-              bf2 = higherLevel->B2()[i];
-              bf3 = higherLevel->B3()[i];
-              bf4 = higherLevel->B4()[i];
-              bf5 = higherLevel->B5()[i];
-              bf6 = higherLevel->B6()[i];
-              alphL1 = higherLevel->AlphL()[i];
-              alphL1p = higherLevel->AlphLp()[i];	
+     	      bf1 = higherLevel->B1()[j];
+              bf2 = higherLevel->B2()[j];
+              bf3 = higherLevel->B3()[j];
+              bf4 = higherLevel->B4()[j];
+              bf5 = higherLevel->B5()[j];
+              bf6 = higherLevel->B6()[j];
+              alphL1 = higherLevel->AlphL()[j];
+              alphL1p = higherLevel->AlphLp()[j];	
            // ---------------------------------------------------------------------
             }
             else{ // if another transition is found that is closer in energy, choose this level
@@ -637,14 +637,14 @@ void G4NuclearLevelManager::AddMulipole(G4int Z, G4int A, G4String myfilename)
                 L1p   = higherLevel->L2()[j];
                 delta1= higherLevel->MixingRatio()[j];
 	    // Rishita Gudapati ----------------------------------------------------
-     	        bf1 = higherLevel->B1()[i];
-                bf2 = higherLevel->B2()[i];
-                bf3 = higherLevel->B3()[i];
-                bf4 = higherLevel->B4()[i];
-                bf5 = higherLevel->B5()[i];
-                bf6 = higherLevel->B6()[i];
-                alphL1 = higherLevel->AlphL()[i];
-                alphL1p = higherLevel->AlphLp()[i];	
+     	        bf1 = higherLevel->B1()[j];
+                bf2 = higherLevel->B2()[j];
+                bf3 = higherLevel->B3()[j];
+                bf4 = higherLevel->B4()[j];
+                bf5 = higherLevel->B5()[j];
+                bf6 = higherLevel->B6()[j];
+                alphL1 = higherLevel->AlphL()[j];
+                alphL1p = higherLevel->AlphLp()[j];	
             // ---------------------------------------------------------------------
               }
             }
