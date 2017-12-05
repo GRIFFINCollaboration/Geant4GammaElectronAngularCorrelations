@@ -301,8 +301,8 @@ private:
   std::vector<G4double> _b4;
   std::vector<G4double> _b5;
   std::vector<G4double> _b6;
-  std::vector<G4double> _alphL1;
-  std::vector<G4double> _alphL2;
+  std::vector<G4double> _alphL;
+  std::vector<G4double> _alphLp;
 
   std::vector< std::vector< G4double > > _a2_gg;
   std::vector< std::vector< G4double > > _a4_gg;
