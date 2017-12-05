@@ -676,7 +676,7 @@ G4double alphL1p, G4double bs1, G4double bs2, G4double bs3, G4double bs4, G4doub
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   
 
-  if(boolGoodLevelToOutputToScreen) {
+  if(boolGoodLevelToOutputToScreen && (a2_gg != 0 || a4_gg != 0)) {
     G4cout << "\n" << G4endl;
     G4cout << "----------------- angular coefficients ---------------" << G4endl;
     G4cout << "\n" << G4endl;
