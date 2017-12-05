@@ -163,7 +163,7 @@ G4Fragment* G4VGammaDeexcitation::GenerateGamma(G4Fragment* aNucleus)
   if (dtransition && !(dtransition->IsAGamma())) {
 	gamma = G4Electron::Electron();
 	_vSN = dtransition->GetOrbitNumber();
-	_electron0.RemoveElectron(_vSN);
+	_electronO.RemoveElectron(_vSN);
 	lv += G4LorentzVector(0.0,0.0,0.0,CLHEP::electron_mass_c2 - dtransition->GetBondEnergy());
   }
 
@@ -228,8 +228,7 @@ G4Fragment* G4VGammaDeexcitation::GenerateGamma(G4Fragment* aNucleus)
   G4double higherLevelEnergy;
 
   G4double levelEnergy      = dtransition->GetLevelEnergy();
-  G4bool firstproduct    = G4NuclearLevelStore::GetInstance()->GetFirstProduct();
-
+ 
   if(dtransition && G4NuclearLevelStore::GetInstance()->GetUserFilesMultipole(aNucleus->GetZ(), aNucleus->GetA()) && caseno >= 0) { // if we have given the multipole file
       // second or subsequent particles
 

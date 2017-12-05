@@ -281,27 +281,27 @@ const std::vector<G4double>& G4NuclearLevel::AlphLp() const
 }
 
 // gamma-gamma parameters
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A2_GG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A2_GG() const
 {
   return _a2_gg;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A4_GG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A4_GG() const
 {
   return _a4_gg;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A6_GG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A6_GG() const
 { 
   return _a6_gg;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A8_GG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A8_GG() const
 {
   return _a8_gg;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A10_GG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A10_GG() const
 {
   return _a10_gg;
 }
@@ -312,27 +312,27 @@ const std::vector< std::vector< G4double > >& G4NuclearLevel::MaxWTheta_GG() con
 }
 
 // gamma-electron parameters
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A2_GE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A2_GE() const
 {
   return _a2_ge;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A4_GE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A4_GE() const
 {
   return _a4_ge;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A6_GE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A6_GE() const
 { 
   return _a6_ge;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A8_GE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A8_GE() const
 {
   return _a8_ge;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A10_GE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A10_GE() const
 {
   return _a10_ge;
 }
@@ -343,27 +343,27 @@ const std::vector< std::vector< G4double > >& G4NuclearLevel::MaxWTheta_GE() con
 }
 
 // electron-gamma parameters
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A2_EG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A2_EG() const
 {
   return _a2_eg;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A4_EG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A4_EG() const
 {
   return _a4_eg;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A6_EG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A6_EG() const
 { 
   return _a6_eg;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A8_EG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A8_EG() const
 {
   return _a8_eg;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A10_EG() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A10_EG() const
 {
   return _a10_eg;
 }
@@ -374,27 +374,27 @@ const std::vector< std::vector< G4double > >& G4NuclearLevel::MaxWTheta_EG() con
 }
 
 // electron-electron parameters
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A2_EE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A2_EE() const
 {
   return _a2_ee;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A4_EE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A4_EE() const
 {
   return _a4_ee;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A6_EE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A6_EE() const
 { 
   return _a6_ee;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A8_EE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A8_EE() const
 {
   return _a8_ee;
 }
 
-const std::vector<std::vector<G4double>>& G4NuclearLevel::A10_EE() const
+const std::vector< std::vector< G4double > >& G4NuclearLevel::A10_EE() const
 {
   return _a10_ee;
 }
@@ -666,11 +666,11 @@ G4double alphL1p, G4double bs1, G4double bs2, G4double bs3, G4double bs4, G4doub
   // Will Ashfield - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   if(G4NuclearLevelStore::GetInstance()->manualACcoeffs()){
-    a2 = G4NuclearLevelStore::GetInstance()->GetA2();  
-    a4 = G4NuclearLevelStore::GetInstance()->GetA4(); 
-    a6 = G4NuclearLevelStore::GetInstance()->GetA6();
-    a8 = 0;
-    a10 = 0;
+    a2_gg = G4NuclearLevelStore::GetInstance()->GetA2();  
+    a4_gg = G4NuclearLevelStore::GetInstance()->GetA4(); 
+    a6_gg = G4NuclearLevelStore::GetInstance()->GetA6();
+    a8_gg = 0;
+    a10_gg = 0;
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -705,27 +705,27 @@ G4double alphL1p, G4double bs1, G4double bs2, G4double bs3, G4double bs4, G4doub
     G4cout << "\n" << G4endl;
     G4cout << "--------------- gamma-electron transition ------------" << G4endl;
     G4cout << "\n" << G4endl;
-    G4cout << "a2  = " << a2 << G4endl;
-    G4cout << "a4  = " << a4 << G4endl;
-    G4cout << "a6  = " << a6 << G4endl;
-    G4cout << "a8  = " << a8 << G4endl;
-    G4cout << "a10 = " << a10 << G4endl;
+    G4cout << "a2  = " << a2_ge << G4endl;
+    G4cout << "a4  = " << a4_ge << G4endl;
+    G4cout << "a6  = " << a6_ge << G4endl;
+    G4cout << "a8  = " << a8_ge << G4endl;
+    G4cout << "a10 = " << a10_ge << G4endl;
     G4cout << "\n" << G4endl;
     G4cout << "--------------- electron-gamma transition ------------" << G4endl;
     G4cout << "\n" << G4endl;
-    G4cout << "a2  = " << a2 << G4endl;
-    G4cout << "a4  = " << a4 << G4endl;
-    G4cout << "a6  = " << a6 << G4endl;
-    G4cout << "a8  = " << a8 << G4endl;
-    G4cout << "a10 = " << a10 << G4endl;
+    G4cout << "a2  = " << a2_eg << G4endl;
+    G4cout << "a4  = " << a4_eg << G4endl;
+    G4cout << "a6  = " << a6_eg << G4endl;
+    G4cout << "a8  = " << a8_eg << G4endl;
+    G4cout << "a10 = " << a10_eg << G4endl;
     G4cout << "\n" << G4endl;
     G4cout << "--------------- electron-electron transition ---------" << G4endl;
     G4cout << "\n" << G4endl;
-    G4cout << "a2  = " << a2 << G4endl;
-    G4cout << "a4  = " << a4 << G4endl;
-    G4cout << "a6  = " << a6 << G4endl;
-    G4cout << "a8  = " << a8 << G4endl;
-    G4cout << "a10 = " << a10 << G4endl;
+    G4cout << "a2  = " << a2_ee << G4endl;
+    G4cout << "a4  = " << a4_ee << G4endl;
+    G4cout << "a6  = " << a6_ee << G4endl;
+    G4cout << "a8  = " << a8_ee << G4endl;
+    G4cout << "a10 = " << a10_ee << G4endl;
     G4cout << "\n" << G4endl;
     G4cout << "------------------------------------------------------" << G4endl;
     G4cout << "\n" << G4endl;

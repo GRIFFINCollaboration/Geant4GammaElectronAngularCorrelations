@@ -656,9 +656,8 @@ void G4NuclearLevelManager::AddMulipole(G4int Z, G4int A, G4String myfilename)
               boolGoodLevelToOutputToScreen = true;
 
 	    // Rishita -- modified to include b parameters
-            thisLevel->GenerateWThetaParameters(i, indexHigher, higherLevelEnergy, lowerGammaEnergy, higherGammaEnergy, ji, jo, jf, L1, L1p, L2, L2p, delta1, delta2, boolGoodLevelToOutputToScreen,
-						G4double bf1, G4double bf2, G4double bf3, G4double bf4, G4double bf5, G4double bf6, G4double alphL1, G4double alphL1p, 
-						G4double bs1, G4double bs2, G4double bs3, G4double bs4, G4double bs5, G4double bs6, G4double alphL2, G4double alphL2p);
+            thisLevel->GenerateWThetaParameters(i, indexHigher, higherLevelEnergy, lowerGammaEnergy, higherGammaEnergy, ji, jo, jf, L1, L1p, L2, L2p, delta1, delta2, boolGoodLevelToOutputToScreen, 
+			bf1, bf2, bf3, bf4, bf5, bf6, alphL1, alphL1p, bs1, bs2, bs3, bs4, bs5, bs6, alphL2, alphL2p);
             indexHigher++;
           }
         }
