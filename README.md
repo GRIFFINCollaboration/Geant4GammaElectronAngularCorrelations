@@ -3,7 +3,7 @@ The angular correlations extension was modified to include internal conversion.
 
 To install the Geant4 source files and the detectorSimulations source files, ```./rsyncit.sh``` is provided.
 
-1. open rsyncit.sh with a text editor and replace the paths to the original source directories if necessary
+1. open ```rsyncit.sh``` with a text editor and replace the paths to the original source directories if necessary
 
 2. run ```chmod u+x rsyncit.sh``` if the file is not executable
 
