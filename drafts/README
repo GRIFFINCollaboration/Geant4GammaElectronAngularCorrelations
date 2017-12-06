@@ -1,0 +1,6 @@
+
+This is ALL the source files I've been working from, including all the tracing and poor documentation that I'm responsible for.
+It is recommended that you use the cleaned up versions of the source code in photon_evaporation and radioactive_decay.
+
+This directory is here if something goes wrong with the cleaned up version. These files should definitely work.
+Delete this directory if it takes up too much space.
