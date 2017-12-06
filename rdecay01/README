@@ -97,14 +97,14 @@ $Id: README 78307 2013-12-11 10:55:57Z gcosmo $
  7- Histograms
     ----------
  
-  rdecay01 produces several 1D histograms which are saved as
-  rdecay01.root by default.
+  rdecay01 produces several 1D histograms which are saved as [SPECIES NAME].root
 
-      1 : energy spectrum: e+ e-
-      2 : energy spectrum: nu_e anti_nu_ev
-      3 : energy spectrum: gamma
-      4 : energy spectrum: alpha
-      5 : energy spectrum: ions
+      0 : gamma-gamma angular correlation
+      1 : gamma-electron angular correlation
+      2 : electron-gamma angular correlation
+      3 : electron-electron angular correlation
+      4 : energy spectrum: e- (%)
+      5 : energy spectrum: gammas (%)
       6 : total kinetic energy (Q)
       7 : momentum balance
       8 : total time of life of decay chain          

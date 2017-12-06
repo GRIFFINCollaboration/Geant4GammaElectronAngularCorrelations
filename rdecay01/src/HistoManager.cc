@@ -61,17 +61,17 @@ void HistoManager::Book()
   
   // Define histograms start values
   const G4int kMaxHisto = 9;
-  const G4String id[] = {"1","2","3","4","5","6","7","8","9"};
+  const G4String id[] = {"0","1","2","3","4","5","6","7","8"};
   const G4String title[] = 
-          { "Fig 1: Gamma-Gamma Angular Correlation",          //1
-            "Fig 2: Gamma-Electron Angular Correlation",       //2
-            "Fig 3: Electron-Gamma Angular Correlation",       //3
-            "Fig 4: Electron-Electron Angular Correlation",    //4                  
-            "Fig 5: Electron Energy Spectrum (%)",             //5
-            "Fig 6: Gamma Energy Spectrum (%)",                //6
-            "total kinetic energy (Q)",                 //7                        
-            "momentum balance",                         //8
-            "total time of life of decay chain"         //9
+          { "gamma-gamma angular correlation",          //0
+            "gamma-electron angular correlation",       //1
+            "electron-gamma angular correlation",       //2
+            "electron-electron angular correlation",    //3                  
+            "electron energy spectrum (%)",             //4
+            "gamma energy spectrum (%)",                //5
+            "total kinetic energy (Q)",                 //6                        
+            "momentum balance",                         //7
+            "total time of life of decay chain"         //8
           };  
 
   // Default values (to be reset via /analysis/h1/set command)               
