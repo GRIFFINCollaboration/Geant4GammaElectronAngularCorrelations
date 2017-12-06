@@ -31,7 +31,7 @@ FOR A PURE SIMULATION:
 
 FOR A DETECTOR SIMULATION
 
-9. run ```make``` in your detectorSimulations_v10 directory
+9. run ```make``` in your ```detectorSimulations_v10``` directory
 
 10. create a new build directory
 
