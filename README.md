@@ -29,7 +29,7 @@ FOR A PURE SIMULATION:
 *** repeat steps 3, 4 (without ```make clean```), 5, and 8 for every change to the Geant4/pure simulation source code.
 <br><hr><br>
 
-FOR A DETECTOR SIMULATION
+FOR A DETECTOR SIMULATION:
 
 9. run ```make``` in your ```detectorSimulations_v10``` directory
 
