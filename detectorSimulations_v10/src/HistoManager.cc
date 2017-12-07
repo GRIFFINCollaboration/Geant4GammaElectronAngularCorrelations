@@ -459,31 +459,25 @@ void HistoManager::Book() {
 		for (G4int i = 0; i <= MAXNUMANG; i++) {
 			detString = G4intToG4String(i);
 			name = "kGammaGammaAng" + detString;
-			title = "Gamma Gamma AngCorr" + detString;
+			title = "Gamma-Gamma AngCorr " + detString;
 			
 			Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
-			AngCorrNumbers[i*4] = fMakeHistoIndex;
+			AngCorrNumbers[i*3] = fMakeHistoIndex;
 
 			name = "kGammaElectronAng" + detString;
-			title = "Gamma Electron AngCorr" + detString;
+			title = "Gamma-Electron and Electron-Gamma AngCorr " + detString;
 
 			Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
-			AngCorrNumbers[i*4+1] = fMakeHistoIndex;			
-
-			name = "kElectronGammaAng" + detString;
-			title = "Electron Gamma AngCorr" + detString;
-
-			Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
-			AngCorrNumbers[i*4+2] = fMakeHistoIndex;
+			AngCorrNumbers[i*3+1] = fMakeHistoIndex;			
 
 			// uncomment below if electron-electron matrices are needed
-			// a Paces-Paces angle array is needed. See EventAction.cc
+			// a Paces-Paces angle array is required. See EventAction.cc
 	/*		
 			name = "kElectronElectronAng" + detString;
-			title = "Electron Electron AngCorr" + detString;
+			title = "Electron-Electron AngCorr " + detString;
 
 			Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
-			AngCorrNumbers[i*4+3] = fMakeHistoIndex; 
+			AngCorrNumbers[i*3+2] = fMakeHistoIndex; 
 	*/	
 		} // for (i = 0 to MAXNUMANG)
 

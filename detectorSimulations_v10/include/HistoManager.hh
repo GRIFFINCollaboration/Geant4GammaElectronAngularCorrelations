@@ -99,7 +99,7 @@ public:
     void Save();
 
 // Anita & Rishita
-short AngCorrNumbers[MAXNUMANG*4+4];
+short AngCorrNumbers[MAXNUMANG*3+3];
 short fAngCorrAngles[1];
 //short PacesEnergy[5];
     

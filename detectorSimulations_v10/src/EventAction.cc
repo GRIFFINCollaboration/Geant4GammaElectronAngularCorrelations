@@ -229,7 +229,7 @@ void EventAction::EndOfEventAction(const G4Event*) {
 	
 					for (G4int k = 0; k <= MAXNUMANG; k++) {
 						if (arr_gg[k] > (value - 0.005) && arr_gg[k] < (value + 0.005)) {
-							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*4], ken1, ken2, 1.0);						
+							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*3], ken1, ken2, 1.0);						
 							break; // once k is found, there's no need to keep looking through the array for it
 						}
 					}
@@ -238,7 +238,7 @@ void EventAction::EndOfEventAction(const G4Event*) {
 	        			HistoManager::Instance().FillHisto(HistoManager::Instance().fAngCorrAngles[0], value);
 					for (G4int k = 0; k <= MAXNUMANG; k++) {
 						if (arr[k] > (value - 5.0) && arr[k] < (value + 5.0)) {
-							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*4+1], ken1, ken2, 1.0);
+							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*3+1], ken1, ken2, 1.0);
 							break;
 						}
 					}
@@ -247,7 +247,8 @@ void EventAction::EndOfEventAction(const G4Event*) {
 	        			HistoManager::Instance().FillHisto(HistoManager::Instance().fAngCorrAngles[0], value);
 					for (G4int k = 0; k <= MAXNUMANG; k++) {
 						if (arr[k] > (value - 5.0) && arr[k] < (value + 5.0)) {
-							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*4+2], ken1, ken2, 1.0);
+							// is filled into the same histogram as a germanium-paces
+							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*3+1], ken1, ken2, 1.0);
 							break;
 						}
 					}
@@ -260,7 +261,7 @@ void EventAction::EndOfEventAction(const G4Event*) {
 					G4double value = thisPacesPacesCryMap[cry1_index][cry2_index]; 
 					for (G4int k = 0; k <= MAXNUMANG; k++) {
 						if (arr[k][0] > (value - 0.005) && arr[k][0] < (value + 0.005)) {
-							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*4+3], ken1, ken2, 1.0);
+							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*3+2], ken1, ken2, 1.0);
 							break;
 						}
 					}
