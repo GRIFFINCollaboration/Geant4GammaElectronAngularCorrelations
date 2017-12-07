@@ -37,8 +37,8 @@ FOR A DETECTOR SIMULATION:
 
 10. create a new build directory
 
-11. run ```cmake -DGeant4_DIR=/opt/geant4.10.01.p03-install/lib64/Geant4-10.1.3/ ~/detectorSimulations_v10/``` in this build directory.
-    [see notes in step 7].
+11. run ```cmake -DGeant4_DIR=/opt/geant4.10.01.p03-install/lib64/Geant4-10.1.3/ ~/detectorSimulations_v10/``` 
+    in this build directory [see notes in step 7].
     
 12. run ```make``` in this build directory
 
