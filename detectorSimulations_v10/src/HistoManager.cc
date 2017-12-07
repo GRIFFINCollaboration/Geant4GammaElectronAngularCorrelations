@@ -450,11 +450,11 @@ void HistoManager::Book() {
 	
 	if(fAngCorr) {
 		xmin = 0;
-		xmax = 3500;
-		G4double nxbins = 3500;
+		xmax = 1500;
+		G4double nxbins = 1500;
 		G4double ymin = 0;
-		G4double ymax = 3500;
-		G4double nybins = 3500;
+		G4double ymax = 1500;
+		G4double nybins = 1500;
 		
 		for (G4int i = 0; i <= MAXNUMANG; i++) {
 			detString = G4intToG4String(i);
