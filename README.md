@@ -9,7 +9,7 @@ To install the Geant4 source files and the detectorSimulations source files, ```
 
 3. run ```./rsyncit.sh```
 
-4. run ```make clean``` and then ```make``` in your Geant4 build directory
+4. run ```make clean``` and then ```make``` and ```make install``` in your Geant4 build directory
 
 <br><hr>
 FOR A PURE SIMULATION:
