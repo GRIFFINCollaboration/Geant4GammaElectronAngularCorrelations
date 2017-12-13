@@ -191,36 +191,37 @@ void EventAction::EndOfEventAction(const G4Event*) {
 	// satisfied only when the hit was either in a germanium (ID 1000) or in paces (ID 50)
 	if((fHitTrackerI[6][i] == 1000) || (fHitTrackerI[6][i] == 50)) { 
 			
-		ken1 = fHitTrackerD[0][i]/keV;
+		edep1 = fHitTrackerD[0][i]/keV;
 		
 		G4int det1 = fHitTrackerI[8][i];
 	 	G4int cry1 = fHitTrackerI[7][i];
 		G4int cry1_index = -1;
 
 		if (fHitTrackerI[6][i] == 1000) {
-			cry1_index = det1*4 + cry1;
+			cry1_index = det1*MAXNUMCRYGRIFFIN + cry1;
 		} else {
 			cry1_index = det1;
 		}
 		
 		// start at i + 1 to prevent double counting		
 		for(G4int j = i + 1; j < fNumberOfHits; j++) {
-			if (i == j) {
-				continue;
-			} else if ((fHitTrackerI[6][j] == 1000) || (fHitTrackerI[6][j] == 50)) {
+			if ((fHitTrackerI[6][j] == 1000) || (fHitTrackerI[6][j] == 50)) {
 
-				ken2 = fHitTrackerD[0][j]/keV;
+				edep2 = fHitTrackerD[0][j]/keV;
 
 				G4int det2 = fHitTrackerI[8][j];
 				G4int cry2 = fHitTrackerI[7][j];
 				G4int cry2_index = -1;
 
 				if (fHitTrackerI[6][j] == 1000) {
-					cry2_index = det2*4 + cry2;
+					cry2_index = det2*MAXNUMCRYGRIFFIN + cry2;
 				} else {
 					cry2_index = det2;
 				}
 				
+
+				const G4double GGBIN = 0.005;
+				const G4double GEBIN = 5.000;
 
 				if((fHitTrackerI[6][i] == 1000) && (fHitTrackerI[6][j] == 1000)) { // germanium-germanium
 					
@@ -228,8 +229,8 @@ void EventAction::EndOfEventAction(const G4Event*) {
 	        			HistoManager::Instance().FillHisto(HistoManager::Instance().fAngCorrAngles[0], value); // keeps track of all values produced in simulation
 	
 					for (G4int k = 0; k <= MAXNUMANG; k++) {
-						if (arr_gg[k] > (value - 0.005) && arr_gg[k] < (value + 0.005)) {
-							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*3], ken1, ken2, 1.0);						
+						if (arr_gg[k] > (value - GGBIN) && arr_gg[k] < (value + GGBIN)) {
+							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*MAXANGCORRHISTO], edep1, edep2, 1.0);					
 							break; // once k is found, there's no need to keep looking through the array for it
 						}
 					}
@@ -237,18 +238,19 @@ void EventAction::EndOfEventAction(const G4Event*) {
 					G4double value = thisPacesGriffinCryMap[cry2_index][cry1_index]; // first index is for paces
 	        			HistoManager::Instance().FillHisto(HistoManager::Instance().fAngCorrAngles[0], value);
 					for (G4int k = 0; k <= MAXNUMANG; k++) {
-						if (arr[k] > (value - 5.0) && arr[k] < (value + 5.0)) {
-							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*3+1], ken1, ken2, 1.0);
+						if (arr[k] > (value - GEBIN) && arr[k] < (value + GEBIN)) {
+							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*MAXANGCORRHISTO+1], edep1, edep2, 1.0);
 							break;
 						}
 					}
-				} else if ((fHitTrackerI[6][i] == 50) && (fHitTrackerI[6][j] == 100)) { // paces-germanium
+				} else if ((fHitTrackerI[6][i] == 50) && (fHitTrackerI[6][j] == 1000)) { // paces-germanium
 					G4double value = thisPacesGriffinCryMap[cry1_index][cry2_index]; 
 	        			HistoManager::Instance().FillHisto(HistoManager::Instance().fAngCorrAngles[0], value);
 					for (G4int k = 0; k <= MAXNUMANG; k++) {
-						if (arr[k] > (value - 5.0) && arr[k] < (value + 5.0)) {
+						if (arr[k] > (value - GEBIN) && arr[k] < (value + GEBIN)) {
 							// is filled into the same histogram as a germanium-paces
-							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*3+1], ken1, ken2, 1.0);
+							// edep1 and edep2 switched to keep germanium on x-axis
+							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*MAXANGCORRHISTO+1], edep2, edep1, 1.0);
 							break;
 						}
 					}
@@ -261,7 +263,7 @@ void EventAction::EndOfEventAction(const G4Event*) {
 					G4double value = thisPacesPacesCryMap[cry1_index][cry2_index]; 
 					for (G4int k = 0; k <= MAXNUMANG; k++) {
 						if (arr[k][0] > (value - 0.005) && arr[k][0] < (value + 0.005)) {
-							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*3+2], ken1, ken2, 1.0);
+							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*MAXANGCORRHISTO+2], edep1, edep2, 1.0);
 							break;
 						}
 					}
@@ -593,13 +595,13 @@ void EventAction::FillPacesCryst() {
     for (G4int j=0; j < MAXNUMDETPACES; j++) {
         if(fPacesCrystEnergyDet[j] > MINENERGYTHRES) {
 	  
-            if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().fPacesHistNumbers[0], fPacesCrystEnergyDet[j]);
-            if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().fPacesHistNumbers[j+2], fPacesCrystEnergyDet[j]);
+            if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().fPacesHistNumbers[0], fPacesCrystEnergyDet[j]/keV);
+            if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().fPacesHistNumbers[j+2], fPacesCrystEnergyDet[j]/keV);
             energySumDet += fPacesCrystEnergyDet[j];
         }
     }
     if(energySumDet > MINENERGYTHRES) {
-        if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().fPacesHistNumbers[1], energySumDet);
+        if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().fPacesHistNumbers[1], energySumDet/keV);
     }
 }////////////////////////////////////////////20/6
 

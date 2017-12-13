@@ -56,6 +56,8 @@ const G4int NUMPARTICLETYPES    = 20;
 
 // Anita
 const G4int MAXNUMANG = 10;
+//Rishita
+const G4int MAXANGCORRHISTO = 3;
 
 // ekin histo properties    ///////////////////////
 const G4int     EKINNBINS  = 10000;
@@ -72,6 +74,9 @@ const G4double  EDEPXMAX   = 10000.5*keV;//was 10000.5
 const G4int     EDEPNBINSSPICE  = 10000;//was 10000	//spice histos range different
 const G4double  EDEPXMINSPICE   = 0.*keV;
 const G4double  EDEPXMAXSPICE   = 2100.0*keV;//was 10000.5
+const G4int 	EDEPNBINSGRIFFIN = 1500;
+const G4double	EDEPXMINGRIFFIN = 0.5*keV;
+const G4double 	EDEPXMAXGRIFFIN	= 1500*keV;
 
 // trackl histo properties  ///////////////////////
 const G4int     TRACKLNBINS = 5000;

@@ -61,8 +61,8 @@ public:
     virtual void    EndOfEventAction(const G4Event*);
 
 // Rishita --------------
- G4double ken1;
- G4double ken2;
+ G4double edep1;
+ G4double edep2;
 // ----------------------
 
     G4int GetEventNumber() { return fEvtNb;};
