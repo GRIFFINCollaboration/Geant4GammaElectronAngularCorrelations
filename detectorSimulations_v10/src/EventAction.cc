@@ -425,13 +425,13 @@ void EventAction::FillGriffinCryst()
             if(fGriffinCrystEnergyDet[i][j] > MINENERGYTHRES) {
                 // fill energies in each crystal
 
-                if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSupCry[MAXNUMDETGRIFFIN*j+1+i], fGriffinCrystEnergyDet[i][j]);
-                if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSupCry[0], fGriffinCrystEnergyDet[i][j]);
+                if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSupCry[MAXNUMDETGRIFFIN*j+1+i], fGriffinCrystEnergyDet[i][j]/keV);
+                if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSupCry[0], fGriffinCrystEnergyDet[i][j]/keV);
                 
 		if(!suppressorBackFired[i] && !suppressorExtensionFired[i] && !suppressorSideFired[i]) { // Suppressor fired?
                   
-		    if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSupCry[MAXNUMDETGRIFFIN*j+1+i], fGriffinCrystEnergyDet[i][j]);
-                    if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSupCry[0], fGriffinCrystEnergyDet[i][j]);
+		    if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSupCry[MAXNUMDETGRIFFIN*j+1+i], fGriffinCrystEnergyDet[i][j]/keV);
+                    if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSupCry[0], fGriffinCrystEnergyDet[i][j]/keV);
 
                 }
                 energySumDet += fGriffinCrystEnergyDet[i][j];
@@ -440,18 +440,18 @@ void EventAction::FillGriffinCryst()
         if(energySumDet > MINENERGYTHRES) {
             
 	    // fill energies in each detector
-            if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSup[i+2], energySumDet);
+            if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSup[i+2], energySumDet/keV);
             
 	    // fill standard energy and track spectra
-            if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSup[0], energySumDet);
+            if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSup[0], energySumDet/keV);
             
 	    if(!suppressorBackFired[i] && !suppressorExtensionFired[i] && !suppressorSideFired[i]) {
                 
 		// fill energies in each detector
-                if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSup[i+2], energySumDet);
+                if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSup[i+2], energySumDet/keV);
                 
 		// fill standard energy and track spectra
-                if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSup[0], energySumDet);
+                if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSup[0], energySumDet/keV);
 
             }
         }
@@ -459,9 +459,9 @@ void EventAction::FillGriffinCryst()
     }
 
     if(energySum > MINENERGYTHRES) {
-        if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSup[1], energySum);
+        if(WRITEEDEPHISTOS)     HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinUnSup[1], energySum/keV);
         if(!suppressorFired) {
-            if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSup[1], energySum);
+            if(WRITEEDEPHISTOS) HistoManager::Instance().FillHisto(HistoManager::Instance().GriffinSup[1], energySum/keV);
         }
     }
 }
