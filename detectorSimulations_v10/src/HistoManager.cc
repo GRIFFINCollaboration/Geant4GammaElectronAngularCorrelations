@@ -269,28 +269,25 @@ void HistoManager::Book() {
         title     = "Edep in crystal (keV)";
 
 	if(fGriffin) {
-	 nbins = EDEPNBINSGRIFFIN;
- 	 xmin = EDEPXMINGRIFFIN;
-         xmax = EDEPXMAXGRIFFIN;
 	 // Griffin Suppressors
 
 	  name  = "griffin_crystal_sup_edep";
-	  MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+	  MakeHisto(analysisManager, name,  title, EDEPXMINGRIFFIN, EDEPXMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	  GriffinSup[0] = fMakeHistoIndex; // assigns array item the histo index for reference by FillHisto()
 
 	  name  = "griffin_crystal_sup_edep_cry";
-	  MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+	  MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
           GriffinSupCry[0] = fMakeHistoIndex;
 
 	  name  = "griffin_crystal_sup_edep_sum";
-	  MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+	  MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	  GriffinSup[1] = fMakeHistoIndex;
 
 	  for (G4int i=0; i < MAXNUMDETGRIFFIN; i++) {
 	      detString = G4intToG4String(i);
 
 	      name  = "griffin_crystal_sup_edep_det" + detString ;
-	      MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+	      MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	      GriffinSup[i+2] = fMakeHistoIndex;
 	  }
 
@@ -301,7 +298,7 @@ void HistoManager::Book() {
 		    cryString = G4intToG4String(j);
 
 		    name  = "griffin_crystal_sup_edep_det" + detString + "_cry" + cryString;
-		    MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+		    MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 		    GriffinSupCry[MAXNUMDETGRIFFIN*j+1+i] = fMakeHistoIndex;
 	      }
 	  }
@@ -309,22 +306,22 @@ void HistoManager::Book() {
 	  // Griffin Crystal Unsuppressed
 
 	  name  = "griffin_crystal_unsup_edep";
-	  MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+	  MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	  GriffinUnSup[0] = fMakeHistoIndex;
 
 	  name  = "griffin_crystal_unsup_edep_cry";
-	  MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+	  MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	  GriffinUnSupCry[0] = fMakeHistoIndex;
 
 	  name  = "griffin_crystal_unsup_edep_sum";
-	  MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+	  MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	  GriffinUnSup[1] = fMakeHistoIndex;
 
 	  for (G4int i=0; i < MAXNUMDETGRIFFIN; i++) {
 	      detString = G4intToG4String(i);
 
 	      name  = "griffin_crystal_unsup_edep_det" + detString;
-	      MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+	      MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	      GriffinUnSup[i+2] = fMakeHistoIndex;
 	  }
 
@@ -335,7 +332,7 @@ void HistoManager::Book() {
 		    cryString = G4intToG4String(j);
 
 		    name  = "griffin_crystal_unsup_edep_det" + detString + "_cry" + cryString;
-		    MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+		    MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 		    GriffinUnSupCry[MAXNUMDETGRIFFIN*j+1+i] = fMakeHistoIndex;
 	      }
 	  }
@@ -493,19 +490,15 @@ void HistoManager::Book() {
 	}//if(fAngCorr)
 
 		  if(fPaces) {// paces detector
-		    
-		 	nbins = EDEPNBINSGRIFFIN;
- 		 	xmin = EDEPXMINGRIFFIN;
-         		xmax = EDEPXMAXGRIFFIN;
-			
+		 		 
 			name  = "paces_crystal_edep";
-			title = "Paces Crystal Edep";
-			MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+			title = "Paces Crystal Edep (keV)";
+			MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	    		fPacesHistNumbers[0]=fMakeHistoIndex;
 	    
 			name  = "paces_crystal_edep_sum";
-			title = "Paces Crystal Edep Sum";
-			MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+			title = "Paces Crystal Edep Sum (keV)";
+			MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	    		fPacesHistNumbers[1]=fMakeHistoIndex;
 	    
 			for (G4int i=0; i < MAXNUMDETPACES; i++) {//[MAXNUMDET];
@@ -513,8 +506,8 @@ void HistoManager::Book() {
 				detString = G4intToG4String(i);
 
             			name  = "paces_crystal_edep_det" + detString;
-  	    			title  = "Paces Crystal Edep Det " + detString;
-            			MakeHisto(analysisManager, name,  title, xmin, xmax, nbins);
+  	    			title  = "Paces Crystal Edep Det " + detString + " (keV)";
+            			MakeHisto(analysisManager, name,  title, EDEPMINGRIFFIN, EDEPMAXGRIFFIN, EDEPNBINSGRIFFIN);
 	    	    		fPacesHistNumbers[i+2]=fMakeHistoIndex;
 			 }
 		  }//if(fPaces)

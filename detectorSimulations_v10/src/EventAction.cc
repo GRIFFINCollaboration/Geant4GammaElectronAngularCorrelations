@@ -101,7 +101,11 @@ void EventAction::EndOfEventAction(const G4Event*) {
 // Rishita Gudapati & Anita Mathews ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //	G4double arr_gg[] = {33.6541, 53.8336, 66.4608, 76.3814, 88.4736, 101.331, 112.5438, 119.8489, 135.6357, 161.2132, 180.00};
+
+	// used for gamma-gamma correlations
 	G4double arr_gg[] = {33.166, 53.690, 66.891, 76.694, 88.418, 101.57, 112.95, 119.84, 135.66, 160.87, 180.00};
+	
+	// used for all other correlations
 	G4double arr[] = {4.889, 24.945, 44.386, 65.463, 74.434, 84.844, 95.151, 105.412, 125.158, 144.413, 165.824};
 
 // All 52 angles for germanium-germanium hits, along with their weights, are below.
@@ -218,8 +222,7 @@ void EventAction::EndOfEventAction(const G4Event*) {
 				} else {
 					cry2_index = det2;
 				}
-				
-
+			
 				const G4double GGBIN = 0.005;
 				const G4double GEBIN = 5.000;
 
