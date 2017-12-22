@@ -100,18 +100,18 @@ void EventAction::EndOfEventAction(const G4Event*) {
     
 // Rishita Gudapati & Anita Mathews ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//	incorrect angles?
 //	G4double arr_gg[] = {33.6541, 53.8336, 66.4608, 76.3814, 88.4736, 101.331, 112.5438, 119.8489, 135.6357, 161.2132, 180.00};
 
 	// used for gamma-gamma correlations
-	G4double arr_gg[] = {33.166, 53.690, 66.891, 76.694, 88.418, 101.57, 112.95, 119.84, 135.66, 160.87, 180.00};
+	G4double arr_gg[MAXNUMANG_GG] = {33.166, 53.690, 66.891, 76.694, 88.418, 101.57, 112.95, 119.84, 135.66, 160.87, 180.00};
 	
 	// used for all other correlations
-	G4double arr[] = {5.237, 24.515, 44.340, 65.511, 74.412, 84.969, 94.932, 105.660, 124.771, 145.176, 164.536};
+	G4double arr[MAXNUMANG_GE] = {5.237, 16.203, 24.515, 35.016, 44.340, 55.517, 65.511, 74.412, 84.969, 94.932, 105.660, 114.784, 124.771, 135.490, 145.176, 155.214, 164.536, 174.763};
 
 // All 52 angles for germanium-germanium hits, along with their weights, are below.
 // to access the angle, use arr_gg[k][0]
-// only 11 angles are used. To change this, reset MAXNUMANG in the HistoManager header.
-// 	ie. for all 52 angles, set MAXNUMANG to 51 (zero-indexed)
+// only 11 angles are used. To change this, reset MAXNUMANG_GG in the HistoManager header.
 
 /*	G4double arr_gg[52][2] = {
         {0.0000, 64},
@@ -222,34 +222,28 @@ void EventAction::EndOfEventAction(const G4Event*) {
 				} else {
 					cry2_index = det2;
 				}
-			
-				const G4double GGBIN = 0.005;
-				const G4double GEBIN = 5.000;
 
-				if((fHitTrackerI[6][i] == 1000) && (fHitTrackerI[6][j] == 1000)) { // germanium-germanium
-					
-					G4double value = thisGriffinCryMap[cry1_index][cry2_index]; 
-	        			HistoManager::Instance().FillHisto(HistoManager::Instance().fAngCorrAngles[0], value); // keeps track of all values produced in simulation
-	
-					for (G4int k = 0; k <= MAXNUMANG; k++) {
+				G4double value = -1;
+			
+				if((fHitTrackerI[6][i] == 1000) && (fHitTrackerI[6][j] == 1000) && gg) { // germanium-germanium
+					value = thisGriffinCryMap[cry1_index][cry2_index]; 
+	        			for (G4int k = 0; k < MAXNUMANG_GG; k++) {
 						if (arr_gg[k] > (value - GGBIN) && arr_gg[k] < (value + GGBIN)) {
-							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*MAXANGCORRHISTO], edep1, edep2, 1.0);					
+						   HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*MAXANGCORRHISTO], edep1, edep2, 1.0);					
 							break; // once k is found, there's no need to keep looking through the array for it
 						}
 					}
-				} else if ((fHitTrackerI[6][i] == 1000) && (fHitTrackerI[6][j] == 50)) { // germanium-paces
-					G4double value = thisPacesGriffinCryMap[cry2_index][cry1_index]; // first index is for paces
-	        			HistoManager::Instance().FillHisto(HistoManager::Instance().fAngCorrAngles[0], value);
-					for (G4int k = 0; k <= MAXNUMANG; k++) {
+				} else if ((fHitTrackerI[6][i] == 1000) && (fHitTrackerI[6][j] == 50) && ge) { // germanium-paces
+					value = thisPacesGriffinCryMap[cry2_index][cry1_index]; // first index is for paces
+	        			for (G4int k = 0; k < MAXNUMANG_GE; k++) {
 						if (arr[k] > (value - GEBIN) && arr[k] < (value + GEBIN)) {
 							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*MAXANGCORRHISTO+1], edep1, edep2, 1.0);
 							break;
 						}
 					}
-				} else if ((fHitTrackerI[6][i] == 50) && (fHitTrackerI[6][j] == 1000)) { // paces-germanium
-					G4double value = thisPacesGriffinCryMap[cry1_index][cry2_index]; 
-	        			HistoManager::Instance().FillHisto(HistoManager::Instance().fAngCorrAngles[0], value);
-					for (G4int k = 0; k <= MAXNUMANG; k++) {
+				} else if ((fHitTrackerI[6][i] == 50) && (fHitTrackerI[6][j] == 1000) && ge) { // paces-germanium
+					value = thisPacesGriffinCryMap[cry1_index][cry2_index]; 
+					for (G4int k = 0; k < MAXNUMANG_GE; k++) {
 						if (arr[k] > (value - GEBIN) && arr[k] < (value + GEBIN)) {
 							// is filled into the same histogram as a germanium-paces
 							// edep1 and edep2 switched to keep germanium on x-axis
@@ -258,20 +252,19 @@ void EventAction::EndOfEventAction(const G4Event*) {
 						}
 					}
 
-				// uncomment below if an electron-electron matrix is needed
 				// a Paces-Paces angle array is necessary.
-				// fAngCorrAngles[0] can be filled at the end of this control branch instead of inside each case
-	
-				}/* else if ((fHitTrackerI[6][i] == 50) && (fHitTrackerI[6][j] == 50)) { //paces-paces
+			/*	} else if ((fHitTrackerI[6][i] == 50) && (fHitTrackerI[6][j] == 50) && ee) { //paces-paces
 					G4double value = thisPacesPacesCryMap[cry1_index][cry2_index]; 
-					for (G4int k = 0; k <= MAXNUMANG; k++) {
+					for (G4int k = 0; k < MAXNUMANG_EE; k++) {
 						if (arr[k][0] > (value - 0.005) && arr[k][0] < (value + 0.005)) {
 							HistoManager::Instance().Fill2DHisto(HistoManager::Instance().AngCorrNumbers[k*MAXANGCORRHISTO+2], edep1, edep2, 1.0);
 							break;
 						}
 					}
-				}*/
+			*/
+				}
 			
+	        		HistoManager::Instance().FillHisto(HistoManager::Instance().fAngCorrAngles[0], value); // keeps track of all values produced in simulation
 			} // type of hit on second detector	
 		}// for(j = i + 1 to number of hits)
 

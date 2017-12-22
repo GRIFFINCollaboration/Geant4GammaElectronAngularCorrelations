@@ -228,8 +228,9 @@ G4Fragment* G4VGammaDeexcitation::GenerateGamma(G4Fragment* aNucleus)
   G4double higherLevelEnergy;
 
   G4double levelEnergy      = dtransition->GetLevelEnergy();
+  G4bool correlation = true;
  
-  if(dtransition && G4NuclearLevelStore::GetInstance()->GetUserFilesMultipole(aNucleus->GetZ(), aNucleus->GetA()) && caseno >= 0) { // if we have given the multipole file
+  if(correlation && dtransition && G4NuclearLevelStore::GetInstance()->GetUserFilesMultipole(aNucleus->GetZ(), aNucleus->GetA()) && caseno >= 0) { // if we have given the multipole file
       // second or subsequent particles
 
       higherLevelEnergy     = G4NuclearLevelStore::GetInstance()->GetHigherLevelEnergy();

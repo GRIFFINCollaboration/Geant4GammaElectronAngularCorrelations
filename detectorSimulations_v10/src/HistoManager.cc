@@ -456,29 +456,34 @@ void HistoManager::Book() {
 		G4double ymax = 1500;
 		G4double nybins = 1500;
 		
-		for (G4int i = 0; i <= MAXNUMANG; i++) {
+		for (G4int i = 0; i < MAXNUMANG; i++) {
 			detString = G4intToG4String(i);
-			name = "kGammaGammaAng" + detString;
-			title = "Gamma-Gamma AngCorr " + detString;
+		
+			if (gg && i < MAXNUMANG_GG) {
+				name = "kGammaGammaAng" + detString;
+				title = "Gamma-Gamma AngCorr " + detString;
 			
-			Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
-			AngCorrNumbers[i*MAXANGCORRHISTO] = fMakeHistoIndex;
+				Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
+				AngCorrNumbers[i*MAXANGCORRHISTO] = fMakeHistoIndex;
+			}
 
-			name = "kGammaElectronAng" + detString;
-			title = "Gamma-Electron and Electron-Gamma AngCorr " + detString;
+			if (ge && i < MAXNUMANG_GE) {
+				name = "kGammaElectronAng" + detString;
+				title = "Gamma-Electron and Electron-Gamma AngCorr " + detString;
 
-			Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
-			AngCorrNumbers[i*MAXANGCORRHISTO+1] = fMakeHistoIndex;			
+				Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
+				AngCorrNumbers[i*MAXANGCORRHISTO+1] = fMakeHistoIndex;	
+			}		
 
-			// uncomment below if electron-electron matrices are needed
 			// a Paces-Paces angle array is required. See EventAction.cc
-	/*		
-			name = "kElectronElectronAng" + detString;
-			title = "Electron-Electron AngCorr " + detString;
+			/*if (ee && i < MAXNUMANG_EE) {
+				name = "kElectronElectronAng" + detString;
+				title = "Electron-Electron AngCorr " + detString;
 
-			Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
-			AngCorrNumbers[i*MAXANGCORRHISTO+2] = fMakeHistoIndex; 
-	*/	
+				Make2DHistoWithAxisTitles(analysisManager, name, title, nxbins, xmin, xmax, nybins, ymin, ymax);
+				AngCorrNumbers[i*MAXANGCORRHISTO+2] = fMakeHistoIndex; 
+			}*/
+
 		} // for (i = 0 to MAXNUMANG)
 
 		name = "AngleDistro";

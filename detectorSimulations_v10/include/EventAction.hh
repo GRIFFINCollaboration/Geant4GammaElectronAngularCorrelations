@@ -63,6 +63,11 @@ public:
 // Rishita --------------
  G4double edep1;
  G4double edep2;
+ const G4double GGBIN = 0.005;
+ const G4double GEBIN = 5.000;
+ G4bool gg = false;
+ G4bool ge = true;
+ G4bool ee = false;
 // ----------------------
 
     G4int GetEventNumber() { return fEvtNb;};

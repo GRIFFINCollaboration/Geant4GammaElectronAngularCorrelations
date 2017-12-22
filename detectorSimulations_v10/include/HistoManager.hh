@@ -54,9 +54,10 @@ const G4int MAXNUMDETGRIFFIN    = 16;
 const G4int MAXNUMCRYGRIFFIN    = 4;
 const G4int NUMPARTICLETYPES    = 20;
 
-// Anita
-const G4int MAXNUMANG = 10;
-//Rishita
+// Anita & Rishita
+const G4int MAXNUMANG_GG = 11;
+const G4int MAXNUMANG_GE = 18;
+const G4int MAXNUMANG = std::max(MAXNUMANG_GG,MAXNUMANG_GE);
 const G4int MAXANGCORRHISTO = 3;
 
 // ekin histo properties    ///////////////////////
@@ -75,8 +76,8 @@ const G4int     EDEPNBINSSPICE  = 10000;//was 10000	//spice histos range differe
 const G4double  EDEPXMINSPICE   = 0.*keV;
 const G4double  EDEPXMAXSPICE   = 2100.0*keV;//was 10000.5
 const G4int 	EDEPNBINSGRIFFIN = 1500;
-const G4double	EDEPXMINGRIFFIN = 0.5*keV;
-const G4double 	EDEPXMAXGRIFFIN	= 1500*keV;
+const G4double	EDEPXMINGRIFFIN = 0.0;
+const G4double 	EDEPXMAXGRIFFIN	= 1500.0;
 
 // trackl histo properties  ///////////////////////
 const G4int     TRACKLNBINS = 5000;
@@ -103,10 +104,14 @@ public:
     void Book();
     void Save();
 
-// Anita & Rishita
-short AngCorrNumbers[MAXNUMANG*3+3];
+// Anita & Rishita ----------------------------
+// replace MAXNUMANG_GE with the highest valued MAXNUMANG variable
+short AngCorrNumbers[MAXNUMANG_GE*MAXANGCORRHISTO+MAXANGCORRHISTO];
 short fAngCorrAngles[1];
-//short PacesEnergy[5];
+G4bool   gg = false;
+G4bool   ge = true;
+G4bool   ee = false;
+//---------------------------------------------
     
     //arrays allow histos to be made independently of GRIFFIN
     //	sizeof() arrays appear double the elements, due to 2 bits per element
