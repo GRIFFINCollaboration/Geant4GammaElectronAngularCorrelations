@@ -62,6 +62,9 @@ void HistoManager::Book()
   // Define histograms start values
   const G4int kMaxHisto = 9;
   const G4String id[] = {"0","1","2","3","4","5","6","7","8"};
+  // Rishita -- added further angcorr graphs and modified the neutrino/electron
+  //            energy spectra to only look at electrons. Deleted some graphs we had
+  //            no interest in.
   const G4String title[] = 
           { "gamma-gamma angular correlation",          //0
             "gamma-electron angular correlation",       //1
